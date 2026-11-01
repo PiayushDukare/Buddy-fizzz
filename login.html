@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In — Buddy Fizz Partner Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", system-ui, sans-serif;
+        min-height: 100vh;
+        color: #143a24;
+        display: grid;
+        place-items: center;
+        padding: 1.2rem;
+        background: linear-gradient(135deg, #143a24, #2e7d32);
+      }
+      .auth {
+        background: #fffaf0;
+        width: min(100%, 26rem);
+        border-radius: 1.3rem;
+        box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+        padding: 2.6rem 2.2rem;
+        text-align: center;
+      }
+      .auth__logo {
+        font-family: "Baloo 2", cursive;
+        font-weight: 800;
+        font-size: 2.1rem;
+        line-height: 0.85;
+        color: #143a24;
+      }
+      .auth__logo span {
+        color: #a4d233;
+      }
+      .auth__sub {
+        color: #6b7a6e;
+        font-size: 0.9rem;
+        margin: 0.6rem 0 1.8rem;
+      }
+      .field {
+        text-align: left;
+        margin-bottom: 1.1rem;
+      }
+      .field label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+      .field-input {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #fff;
+        border: 1px solid #e7ece3;
+        border-radius: 0.7rem;
+        padding: 0 1rem;
+        transition: border-color 0.2s;
+      }
+      .field-input:focus-within {
+        border-color: #7cb342;
+      }
+      .field-input i {
+        color: #2e7d32;
+      }
+      .field-input input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 0.85rem 0;
+        font-family: inherit;
+        font-size: 0.95rem;
+        background: none;
+      }
+      .btn-submit {
+        width: 100%;
+        border: none;
+        border-radius: 0.7rem;
+        padding: 0.9rem;
+        background: #143a24;
+        color: #fff;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .btn-submit:hover {
+        background: #0e2c1b;
+        transform: translateY(-0.1rem);
+      }
+      .btn-submit[disabled] {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+      .msg {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.9rem;
+        border-radius: 0.6rem;
+        margin-bottom: 1.1rem;
+        display: none;
+      }
+      .msg--error {
+        background: #fbe0e0;
+        color: #b02a2a;
+        display: block;
+      }
+      .msg--ok {
+        background: #dff3df;
+        color: #1f7a34;
+        display: block;
+      }
+      .link-row {
+        text-align: right;
+        margin: -0.5rem 0 1rem;
+      }
+      .link-row a {
+        font-size: 0.8rem;
+        color: #2e7d32;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .auth__foot {
+        margin-top: 1.4rem;
+        font-size: 0.85rem;
+        color: #6b7a6e;
+      }
+      .auth__foot a {
+        color: #2e7d32;
+        font-weight: 600;
+      }
+      .auth__back {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 0.82rem;
+        color: #6b7a6e;
+      }
+    </style>
+  </head>
+  <body>
+    <form class="auth" id="login-form">
+      <div class="auth__logo">Buddy<span>Fizz</span></div>
+      <p class="auth__sub">Partner &amp; Retailer Portal</p>
+      <div class="msg" id="msg"></div>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <div class="field-input">
+          <i class="fa-solid fa-envelope"></i>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@business.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="field-input">
+          <i class="fa-solid fa-lock"></i>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+      </div>
+      <div class="link-row"><a id="forgot-link">Forgot password?</a></div>
+      <button type="submit" class="btn-submit" id="submit">Sign In</button>
+      <p class="auth__foot">
+        New partner or retailer? <a href="index.php#find">Apply here</a>
+      </p>
+      <a href="index.php" class="auth__back"
+        ><i class="fa-solid fa-arrow-left"></i> Back to site</a
+      >
+    </form>
+
+    <form class="auth" id="forgot-form" style="display: none">
+      <div class="auth__logo">Buddy<span>Fizz</span></div>
+      <p class="auth__sub">Reset your password</p>
+      <div class="msg" id="fmsg"></div>
+      <div class="field">
+        <label for="femail">Email Address</label>
+        <div class="field-input">
+          <i class="fa-solid fa-envelope"></i>
+          <input
+            type="email"
+            id="femail"
+            placeholder="you@business.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn-submit" id="fsubmit">
+        Send reset link
+      </button>
+      <a class="auth__back" id="back-to-login"
+        ><i class="fa-solid fa-arrow-left"></i> Back to sign in</a
+      >
+    </form>
+
+    <script>
+      const form = document.getElementById("login-form");
+      const msg = document.getElementById("msg");
+      const submit = document.getElementById("submit");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        msg.className = "msg";
+        submit.disabled = true;
+        submit.textContent = "Signing in…";
+        try {
+          const res = await fetch("api/auth/login.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({
+              email: email.value.trim(),
+              password: password.value,
+            }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Login failed");
+          location.href = data.redirect;
+        } catch (err) {
+          msg.textContent = err.message;
+          msg.className = "msg msg--error";
+          submit.disabled = false;
+          submit.textContent = "Sign In";
+        }
+      });
+
+      const forgotForm = document.getElementById("forgot-form");
+      const fmsg = document.getElementById("fmsg");
+      const fsubmit = document.getElementById("fsubmit");
+      document.getElementById("forgot-link").addEventListener("click", () => {
+        form.style.display = "none";
+        forgotForm.style.display = "block";
+      });
+      document.getElementById("back-to-login").addEventListener("click", () => {
+        forgotForm.style.display = "none";
+        form.style.display = "block";
+      });
+      forgotForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        fmsg.className = "msg";
+        fsubmit.disabled = true;
+        fsubmit.textContent = "Sending…";
+        try {
+          const res = await fetch("api/auth/forgot.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({
+              email: document.getElementById("femail").value.trim(),
+            }),
+          });
+          const data = await res.json();
+          fmsg.textContent =
+            data.message || "If an account exists, a reset link has been sent.";
+          fmsg.className = "msg msg--ok";
+        } catch (err) {
+          fmsg.textContent = "Something went wrong. Please try again.";
+          fmsg.className = "msg msg--error";
+        }
+        fsubmit.disabled = false;
+        fsubmit.textContent = "Send reset link";
+      });
+    </script>
+  </body>
+</html>

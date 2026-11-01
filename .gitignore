@@ -1,0 +1,19 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Runtime uploads (keep the .htaccess guards, ignore the files)
+/uploads/*
+!/uploads/.htaccess
+/media/*
+!/media/.htaccess
+
+# Error logs
+/logs/*
+!/logs/.htaccess
+
+# OS / editor noise
+*.log
+Thumbs.db
+.DS_Store

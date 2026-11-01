@@ -1,0 +1,2 @@
+# These PHP files are include-only (required by endpoints); never served over HTTP.
+Require all denied
